@@ -1,0 +1,10 @@
+{
+  "name": "wohnzimmer-ui",
+  "version": "1.0.0",
+  "description": "Eigene Startoberfläche für den Samsung-Fernseher",
+  "packageType": "app",
+  "appName": "Wohnzimmer",
+  "appPath": "app/index.html",
+  "keywords": ["tizenbrew"],
+  "license": "MIT"
+}
