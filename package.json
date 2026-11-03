@@ -1,6 +1,6 @@
 {
   "name": "wohnzimmer-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Eigene Startoberfläche für den Samsung-Fernseher",
   "packageType": "app",
   "appName": "Wohnzimmer",

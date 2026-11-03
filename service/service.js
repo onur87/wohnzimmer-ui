@@ -3,7 +3,7 @@
    Endpunkte (Antwort als JSON, mit ?cb=name als JSONP):
      /ping            Lebenszeichen
      /apps            installierte Apps (id, name)
-     /launch/<id>     App starten
+     /launch/<id>     App starten (mit ?rest=1 nur über die REST-Schnittstelle, Kennung numerisch)
 */
 var PORT = 18721;
 var started = false;
@@ -74,7 +74,8 @@ function startServer(){
       if (path.indexOf("/launch/") === 0){
         var id = decodeURIComponent(path.slice(8));
         if (!/^[A-Za-z0-9._-]{1,100}$/.test(id)){ send({ ok: false, error: "ungültige Kennung" }); return; }
-        launchApp(id, function(ok, how){ send({ ok: ok, error: ok ? "" : how, how: how }); });
+        var forceRest = q > -1 && /(?:^|&)rest=1/.test(raw.slice(q + 1));
+        (forceRest ? restLaunch : launchApp)(id, function(ok, how){ send({ ok: ok, error: ok ? "" : how, how: how }); });
         return;
       }
       send({ ok: false, error: "unbekannter Pfad" }, 404);
